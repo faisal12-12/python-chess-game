@@ -1,4 +1,5 @@
 import pygame
+import math
 
 
 pygame.init()
@@ -83,7 +84,7 @@ def pieces(P,currentX , currentY):
         case "wP":
             screen.blit(scaleW_Pawn , (currentX+18 , currentY-15))
 
-def BoardInit(): # to init the board outside of the game loop 
+def Board_Init(): # to init the board outside of the game loop 
     
     weigth = 80 
     height = 80
@@ -108,44 +109,38 @@ def BoardInit(): # to init the board outside of the game loop
     
         currentY += 80
 
+def CalcPos():
+    if event.type==pygame.MOUSEBUTTONDOWN:
+            
+            x,y=pygame.mouse.get_pos() 
+            
+            Grid_X = math.floor( (x - 1) / 80 ) 
+            Grid_Y = math.floor( (y - 1) / 80)
+            
+            
+            move("bK" ,Grid_Y,Grid_X)
+            
 
-
-# def move(name,x,y):
-#     match name:
-#         case "bR":
-#             MoveRock(x,y)
-#         case "bN":
-#             MoveKnight(x,y)
-#         case "bB":
-#             MoveBishop(x,y)
-#         case "bQ":
-#             MoveQueen(x,y)
-#         case "bK":
-#             MoveKing(x,y)
-#         case "bP":
-#             MovePawn(x,y)
+def move(name,Grid_Y,Grid_X): # using Matrix[Grid_Y][Grid_X] to know what piecse was cliked 
+    match name:
+        case "bK":
+            Matrix[Grid_Y][Grid_X] = Matrix [7][1]
+            screen.blit(scaleB_King , (Grid_Y * 80 , Grid_X * 80)) 
+            print("Hello")
         
-    
-   
-
-
-
-    
-
-    
+        
 while running:
      
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type==pygame.MOUSEBUTTONDOWN:
-            x,y=pygame.mouse.get_pos()
-            
+        
            
             
 
     screen.fill("gray")
-    BoardInit()
+    Board_Init()
+    CalcPos()
 
     
     pygame.display.flip()

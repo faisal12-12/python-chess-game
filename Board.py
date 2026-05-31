@@ -35,8 +35,23 @@ scaleB_King = pygame.transform.scale(OG_B_King , (40 , 80 ))
 OG_B_pawn = pygame.image.load("assets/B_Pawn.png")
 scaleB_Pawn = pygame.transform.scale(OG_B_pawn , (40 , 80 ))
 
+OG_WightRook = pygame.image.load("assets/W_Rook.png")
+scaleW_Rook = pygame.transform.scale(OG_WightRook , (40 , 80 ))
+
 OG_WightKnight = pygame.image.load("assets/W_Knight.png")
 scaleW_Knight = pygame.transform.scale(OG_WightKnight , (40 , 80 ))
+
+OG_WightBishop = pygame.image.load("assets/W_Bishop.png")
+scaleW_Bishop = pygame.transform.scale(OG_WightBishop , (40 , 80 ))
+
+OG_WightQueen = pygame.image.load("assets/W_Queen.png")
+scaleW_Queen = pygame.transform.scale(OG_WightQueen , (40 , 80 ))
+
+OG_WightKing = pygame.image.load("assets/W_King.png")
+scaleW_King = pygame.transform.scale(OG_WightKing , (40 , 80 ))
+
+OG_WightPawn = pygame.image.load("assets/W_Pawn.png")
+scaleW_Pawn = pygame.transform.scale(OG_WightPawn , (40 , 80 ))
 
 
 
@@ -44,19 +59,29 @@ scaleW_Knight = pygame.transform.scale(OG_WightKnight , (40 , 80 ))
 def pieces(P,currentX , currentY):
     match P:
         case "bR":
-            screen.blit(scaled_BRock , (currentX , currentY))
+            screen.blit(scaled_BRock , (currentX+18 , currentY-15))
         case "bN":
-            screen.blit(scaleB_Knight , (currentX , currentY))
+            screen.blit(scaleB_Knight , (currentX+18 , currentY-15))
         case "bB":
-            screen.blit(scaleB_Bishop , (currentX , currentY))
+            screen.blit(scaleB_Bishop , (currentX+18 , currentY-15))
         case "bQ":
-            screen.blit(scaleB_Queen , (currentX , currentY))
+            screen.blit(scaleB_Queen , (currentX+18 , currentY-15))
         case "bK":
-            screen.blit(scaleB_King , (currentX , currentY))
+            screen.blit(scaleB_King , (currentX+18 , currentY-15))
         case "bP":
-            screen.blit(scaleB_Pawn , (currentX , currentY ))
+            screen.blit(scaleB_Pawn , (currentX+18 , currentY-15))
+        case "wR":
+            screen.blit(scaleW_Rook , (currentX+18 , currentY-15))
         case "wN":
-            screen.blit(scaleW_Knight , (currentX , currentY))
+            screen.blit(scaleW_Knight , (currentX+18 , currentY-15))
+        case "wB":
+            screen.blit(scaleW_Bishop , (currentX+18 , currentY-15))
+        case "wQ":
+            screen.blit(scaleW_Queen , (currentX+18 , currentY-15))
+        case "wK":
+            screen.blit(scaleW_King , (currentX+18 , currentY-15))
+        case "wP":
+            screen.blit(scaleW_Pawn , (currentX+18 , currentY-15))
 
 def BoardInit(): # to init the board outside of the game loop 
     
@@ -85,11 +110,39 @@ def BoardInit(): # to init the board outside of the game loop
 
 
 
+# def move(name,x,y):
+#     match name:
+#         case "bR":
+#             MoveRock(x,y)
+#         case "bN":
+#             MoveKnight(x,y)
+#         case "bB":
+#             MoveBishop(x,y)
+#         case "bQ":
+#             MoveQueen(x,y)
+#         case "bK":
+#             MoveKing(x,y)
+#         case "bP":
+#             MovePawn(x,y)
+        
+    
+   
+
+
+
+    
+
+    
 while running:
      
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            x,y=pygame.mouse.get_pos()
+            
+           
+            
 
     screen.fill("gray")
     BoardInit()

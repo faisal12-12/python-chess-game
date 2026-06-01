@@ -117,30 +117,26 @@ def CalcPos():
             Grid_X = math.floor( (x - 1) / 80 ) 
             Grid_Y = math.floor( (y - 1) / 80)
             
-            
-            move("bK" ,Grid_Y,Grid_X)
+            Selected_Piece = Matrix[Grid_Y][Grid_X] # get the name of the piece
+
+            move(Selected_Piece,Grid_Y,Grid_X) # Pass the var into move()
+            print(Selected_Piece)
             
 
-def move(name,Grid_Y,Grid_X): # using Matrix[Grid_Y][Grid_X] to know what piecse was cliked 
-    match name:
+def move(Selected_Piece,Grid_Y,Grid_X): # using Matrix[Grid_Y][Grid_X] to know what piecse was cliked 
+    match Selected_Piece:
         case "bK":
             Matrix[Grid_Y][Grid_X] = Matrix [7][1]
             screen.blit(scaleB_King , (Grid_Y * 80 , Grid_X * 80)) 
-            print("Hello")
-        
-        
+            
+               
 while running:
-     
+    Board_Init() # make the board only draw once Not with every loop
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        
-           
-            
-
-    screen.fill("gray")
-    Board_Init()
-    CalcPos()
+        CalcPos()
 
     
     pygame.display.flip()
